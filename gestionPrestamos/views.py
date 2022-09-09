@@ -39,3 +39,34 @@ class LibroView(View):
         libro.save()
         datos={'mensaje':'Libro resgistrado esxitosamente'}
         return JsonResponse(datos)
+
+    def put(self,request,isbn):
+        data=json.loads(request.body)
+        libro=list(Libro.objects.filter(Isbn=isbn).values())
+        if len(libro)>0:
+            lib=Libro.objects.get(Isbn=isbn)
+            lib.titulo=data["titulo"]
+            lib.editorial=data["editorial"]
+            lib.autor=data["autor"]
+            lib.no_page=data["no_page"]
+            lib.save()
+            mensaje={"mensaje":"Libro Actualizado exitosamente."}
+        else:
+            mensaje={"mensaje":"No se encontro el Libro."}
+        
+        return JsonResponse(mensaje)
+    
+    def delete(self,request,isbn):
+        libro=list(Libro.objects.filter(Isbn=isbn).values())
+        if len(libro)>0:
+            Libro.objects.filter(Isbn=isbn).delete()
+            mensaje={"mensaje":"Libro Eliminado exitosamente."}
+        else:
+            mensaje={"mensaje":"No se encontro el Libro."}
+        
+        return JsonResponse(mensaje)
+    
+#Tabla Prestamos
+
+#class PrestamoView(View):
+ #   def get():

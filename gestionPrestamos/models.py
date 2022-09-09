@@ -9,12 +9,18 @@ class Libro(models.Model):
     autor=models.CharField(max_length=50,null=False)
     no_page=models.IntegerField(null=True)
 
+    def __str__(self):
+        return self.titulo
+
 class Estudiante(models.Model):
     documento=models.IntegerField(primary_key=True)
     nombre=models.TextField(max_length=50,null=False)
     apellido=models.TextField(max_length=50,null=False)
     email=models.EmailField(unique=True)
     telefono=models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombre+" "+self.apellido
 
  #id=models.ForeignKey(Libro, on_delete=models.CASCADE, unique=True)
 class Prestamo(models.Model):
