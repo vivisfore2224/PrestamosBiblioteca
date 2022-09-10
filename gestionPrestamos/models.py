@@ -24,9 +24,14 @@ class Estudiante(models.Model):
 
  #id=models.ForeignKey(Libro, on_delete=models.CASCADE, unique=True)
 class Prestamo(models.Model):
-    id=models.IntegerField(auto_created=True, primary_key=True)
+    id=models.AutoField(primary_key=True)
     estudiante=models.ForeignKey(Estudiante, on_delete=models.CASCADE)
     libro=models.ForeignKey(Libro, on_delete=models.CASCADE)
+    fecha=models.DateField(auto_now=True)
+
+class Devolucion(models.Model):
+    id=models.AutoField(primary_key=True)
+    prestamo=models.OneToOneField(Prestamo, on_delete=models.CASCADE)
     fecha=models.DateField(auto_now=True)
     
 
