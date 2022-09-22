@@ -11,33 +11,35 @@
 </head>
 <body>
     
-    <div class="container mt-5">
+    <div class="container mt-5 col-7 aling-center">
         <div class="container text-center"><h2 class="text-success">Registrar Libro</h2></div>
-        <form>
+        <form action="../guardarLibro/" method="post">
+          {% csrf_token %}
         <div class="mb-3">
           <label for="isbn" class="form-label">Isbn</label>
-          <input type="text" class="form-control" id="isbn" required placeholder="Isbn01" maxlength="7" minlength="4">
+          <input type="text" class="form-control" id="isbn" name="isbn" required placeholder="Isbn01" maxlength="7" minlength="4">
         </div>
         <div class="mb-3">
             <label for="titulo" class="form-label">Titulo</label>
-            <input type="text" class="form-control" id="titulo" required>
+            <input type="text" class="form-control" id="titulo" name="titulo" required>
           </div>
           <div class="mb-3">
             <label for="autor" class="form-label">Autor</label>
-            <input type="text" class="form-control" id="autor" required pattern="[a-zA-Z ]+" title="Ingrese solo letras" >
+            <input type="text" class="form-control" id="autor" name="autor" required pattern="[a-zA-Z ]+" title="Ingrese solo letras" >
           </div>
           <div class="mb-3">
-            <label for="autor" class="form-label">Fecha</label>
-            <input type="date" class="form-control" id="autor" required min="2022-09-10" max="2022-10-15">
-          </div>
-          <div class="mb-3">
-          <select class="form-select" aria-label="Default select example">
-            <option value="0" selected>Seleccione</option>
-            <option value="1">Norma</option>
-            <option value="2">Planeta</option>
-            <option value="3">Anonimo</option>
+          <label for="editorial" class="form-label">Editorial</label>
+          <select class="form-select" name="editorial" aria-label="Default select example">
+            <option value="Otro" selected>Seleccione</option>
+            <option value="Norma">Norma</option>
+            <option value="Planeta">Planeta</option>
+            <option value="Anonimo">Anonimo</option>
           </select>
-</div>
+          </div>
+          <div class="mb-3">
+            <label for="pages" class="form-label">No Paginas</label>
+            <input type="number" class="form-control" id="pages" name="pages" required min="0">
+          </div>
         <button type="submit" class="btn btn-primary">Enviar</button>
       </form></div>
     

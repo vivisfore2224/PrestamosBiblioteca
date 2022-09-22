@@ -24,10 +24,30 @@
       
 
   <div class="container mt-5">
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a href="formLibro.html">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <form action="../consultaLibro/" method="post">
+        {% csrf_token %}
+        <div class="mb-2 ml-0">
+            <input type="text" name="isbn" required>
+            <button type="submit" class="btn btn-primary">Consultar</button>
+        </div>       
+    </form>
+    <a href="../listaLibros/">
+        <button class="btn btn-primary me-md-2" type="button">Todos</button></a>
+    <a href="../formLibro/">
         <button class="btn btn-primary me-md-2" type="button">Agregar Libro</button></a>
       </div>
+
+    {% if Mensaje%}
+    <div class="container mt-2 aling-center alert alert-success" role="alert">
+    {{Mensaje}}
+    </div>
+    {% endif%}
+    {% if Error%}
+    <div class="container mt-2 aling-center alert alert-danger" role="alert">
+    {{Error}}
+    </div>
+    {% endif%}
     <table class="table table-hover mt-2">
     <thead>
         <th>ISBN</th>

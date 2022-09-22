@@ -20,15 +20,15 @@ class LibroView(View):
         if len(isbn)>0:
             libro=list(Libro.objects.filter(Isbn=isbn).values())
             if len(libro)>0:
-                datos={'Libro':libro}
+                datos={'mensaje':libro, 'Mensaje':'Resultado de la Busqueda.'}
             else:
-                datos={'mensaje': "No se encontro el libro."}
+                datos={'Error': "No se encontro el libro."}
         else:
             Libros=list(Libro.objects.values())
             if len(Libros)>0:
                 datos={"mensaje":Libros} 
             else:
-                datos={"mensaje":"No se encontraron libros."}
+                datos={"Error":"No se encontraron libros."}
         
         return JsonResponse(datos)
 
