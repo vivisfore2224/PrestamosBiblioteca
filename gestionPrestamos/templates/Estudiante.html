@@ -10,11 +10,11 @@
 </head>
 <body>
     <div class="container"><h1 class="display-1 bg-primary text-center">Gestion de Libros</h1>
-    <h6>
-        {% if user.is_authenticated%} {{user.email}} 
-        <a href="{% url 'cerrar' %}">Cerrar sesion</a>
-        
-    </h6>
+        <h6>
+            {% if user.is_authenticated%} {{user.email}} 
+            <a href="{% url 'cerrar' %}">Cerrar sesion</a>
+            
+        </h6>
     </div>
  <div class="container">
     <div class="row">
@@ -31,18 +31,16 @@
 
   <div class="container mt-5">
     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-    <form action="../consultaLibro/" method="post">
+    <form action="../consultaLibroEst/" method="post">
         {% csrf_token %}
         <div class="mb-2 ml-0">
             <input type="text" name="isbn" required>
             <button type="submit" class="btn btn-primary">Consultar</button>
         </div>       
     </form>
-    <a href="../listaLibros/">
+    <a href="../listaLibrosEst/">
         <button class="btn btn-primary me-md-2" type="button">Todos</button></a>
-    <a href="../formLibro/">
-        <button class="btn btn-primary me-md-2" type="button">Agregar Libro</button></a>
-      </div>
+          </div>
 
     {% if Mensaje%}
     <div class="container mt-2 aling-center alert alert-success" role="alert">
@@ -61,8 +59,7 @@
         <th>AUTOR</th>
         <th>EDITORIAL</th>
         <th>PAGINAS</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+
     </thead>
     <tbody>
 {% for lib in mensaje%}
@@ -72,19 +69,15 @@
     <td>{{lib.autor}}</td>
     <td>{{lib.editorial}}</td>
     <td>{{lib.no_page}}</td>
-    <td><a href="{% url 'formulario' lib.Isbn  %}">
-        <button type="button" class="btn btn-warning">Editar</button></a></td>
-    <td>
-        <a href="{% url 'eliminar' lib.Isbn  %}">
-            <button type="button" class="btn btn-danger">Eliminar</button></a></td>
+
 </tr>
 {% endfor%}
 
 
     </tbody>
   </table></div>
-  
   {% else%} No ha Iniciado sesion{%endif%}
+
     
 <!--    <div class="container-fluid bg-danger">Hola</div>
     <div class="container">

@@ -1,3 +1,5 @@
+import email
+from xml.parsers.expat import model
 from django.db import models
 
 # Create your models here.
@@ -33,5 +35,6 @@ class Devolucion(models.Model):
     id=models.AutoField(primary_key=True)
     prestamo=models.OneToOneField(Prestamo, on_delete=models.CASCADE)
     fecha=models.DateField(auto_now=True)
+
     
 
